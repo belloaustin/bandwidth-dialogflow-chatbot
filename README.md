@@ -8,7 +8,7 @@ When an incoming message is received by a Bandwidth number, a notification will 
 
 This code builds on top of Bandwidth's Ruby SDK [Send SMS](https://github.com/Bandwidth/ruby-bandwidth#messaging-20) and Google Dialogflow's [detect intent texts](https://github.com/GoogleCloudPlatform/ruby-docs-samples/blob/master/dialogflow/detect_intent_texts.rb).
 
-One key detail to point out is the concept of a session_id. This is a unique value that Google Dialogflow uses to be able to map a new text to the right conversation and create a seamless dialog with your user. For this demo, the session_id is a hash value created from a concatentated sorted list of your Bandwidth number and the number texting the application. 
+One key detail to point out is the concept of a `session_id`. This is a unique value that Google Dialogflow uses to be able to map a new text to the right conversation and create a seamless dialog with your user. For this demo, the session_id is a hash value created from a concatentated sorted list of your Bandwidth number and the number texting the application. 
 
 ## Web Server using ngrok
 Set up a basic Sinatra server for Bandwidth to send incoming message callbacks to. For this demo, you can simply use ngrok to expose your local development environment to the Internet. [Ngrok](https://ngrok.com/download) is free, and can be downloaded on all major operating systems. 
