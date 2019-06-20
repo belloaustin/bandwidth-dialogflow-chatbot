@@ -13,7 +13,7 @@ $BANDWIDTH_USER_ID = ENV['BANDWIDTH_USER_ID'] || raise(StandardError, "Environme
 $BANDWIDTH_API_TOKEN = ENV['BANDWIDTH_API_TOKEN'] || raise(StandardError, "Environmental variable BANDWIDTH_API_TOKEN needs to be defined")
 $BANDWIDTH_API_SECRET = ENV['BANDWIDTH_API_SECRET'] || raise(StandardError, "Environmental variable BANDWIDTH_API_SECRET needs to be defined")
 $BANDWIDTH_APPLICATION_ID = ENV['BANDWIDTH_APPLICATION_ID'] || raise(StandardError, "Environmental variable BANDWIDTH_APPLICATION_ID needs to be defined")
-$project_id = ENV["GOOGLE_CLOUD_PROJECT"] || raise(StandardError, "Environmental variable GOOGLE_CLOUD_PROJECT needs to be defined")
+$GOOGLE_PROJECT_ID = ENV["GOOGLE_CLOUD_PROJECT"] || raise(StandardError, "Environmental variable GOOGLE_CLOUD_PROJECT needs to be defined")
 
 # create a unique value for the combination of two numbers
 def hash_function(to_num, from_num)
@@ -48,7 +48,7 @@ post '/messages' do
             :from => request_payload["to"],
             :to => [request_payload["message"]["from"]],
             # session_id will be a unique value for two numbers using the hash function
-            :text => detect_intent_text($project_id, hash_function(request_payload["to"], request_payload["message"]["from"]), request_payload["message"]["text"], "en-US"),
+            :text => detect_intent_text($GOOGLE_PROJECT_ID, hash_function(request_payload["to"], request_payload["message"]["from"]), request_payload["message"]["text"], "en-US"),
             :application_id => $BANDWIDTH_APPLICATION_ID}
             )
 
